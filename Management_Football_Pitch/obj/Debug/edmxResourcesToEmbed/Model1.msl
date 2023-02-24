@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Management_FootballPitchModelStoreContainer" CdmEntityContainer="Management_FootballPitchEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="date_crate" ColumnName="date_crate" />
+          <ScalarProperty Name="permission" ColumnName="permission" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="id_user_info" ColumnName="id_user_info" />
+          <ScalarProperty Name="money" ColumnName="money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deposit_Invoice">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Deposit_Invoice">
+        <MappingFragment StoreEntitySet="Deposit_Invoice">
+          <ScalarProperty Name="id_deposit_voice" ColumnName="id_deposit_voice" />
+          <ScalarProperty Name="date_deposit" ColumnName="date_deposit" />
+          <ScalarProperty Name="deposit_amount" ColumnName="deposit_amount" />
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="id_time_slot" ColumnName="id_time_slot" />
+          <ScalarProperty Name="id_f_pitch" ColumnName="id_f_pitch" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Football_Pitch">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Football_Pitch">
+        <MappingFragment StoreEntitySet="Football_Pitch">
+          <ScalarProperty Name="id_f_pitch" ColumnName="id_f_pitch" />
+          <ScalarProperty Name="name_pitch" ColumnName="name_pitch" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="type_pitch" ColumnName="type_pitch" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="price_1" ColumnName="price_1" />
+          <ScalarProperty Name="price_2" ColumnName="price_2" />
+          <ScalarProperty Name="price_3" ColumnName="price_3" />
+          <ScalarProperty Name="praren_pitch" ColumnName="praren_pitch" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+          <ScalarProperty Name="pay_day" ColumnName="pay_day" />
+          <ScalarProperty Name="id_deposit_voice" ColumnName="id_deposit_voice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pitch_Booked">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Pitch_Booked">
+        <MappingFragment StoreEntitySet="Pitch_Booked">
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="phone_orderer" ColumnName="phone_orderer" />
+          <ScalarProperty Name="orderer" ColumnName="orderer" />
+          <ScalarProperty Name="id_p_book" ColumnName="id_p_book" />
+          <ScalarProperty Name="date_book" ColumnName="date_book" />
+          <ScalarProperty Name="date_use" ColumnName="date_use" />
+          <ScalarProperty Name="time_start" ColumnName="time_start" />
+          <ScalarProperty Name="time_end" ColumnName="time_end" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="id_time_slot" ColumnName="id_time_slot" />
+          <ScalarProperty Name="id_f_pitch" ColumnName="id_f_pitch" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_Time_Slot">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Type_Time_Slot">
+        <MappingFragment StoreEntitySet="Type_Time_Slot">
+          <ScalarProperty Name="id_time_slot" ColumnName="id_time_slot" />
+          <ScalarProperty Name="name_time_slot" ColumnName="name_time_slot" />
+          <ScalarProperty Name="time_from" ColumnName="time_from" />
+          <ScalarProperty Name="time_to" ColumnName="time_to" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Info">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.User_Info">
+        <MappingFragment StoreEntitySet="User_Info">
+          <ScalarProperty Name="id_user_info" ColumnName="id_user_info" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CheckEmptyPitch2" FunctionName="Management_FootballPitchModel.Store.CheckEmptyPitch" />
+    <FunctionImportMapping FunctionImportName="CheckEmptyFootballPitch" FunctionName="Management_FootballPitchModel.Store.CheckEmptyFootballPitch" />
+    <FunctionImportMapping FunctionImportName="GetRevenueByCurrentDay" FunctionName="Management_FootballPitchModel.Store.GetRevenueByCurrentDay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Management_FootballPitchModel.GetRevenueByCurrentDay_Result">
+          <ScalarProperty Name="name_pitch" ColumnName="name_pitch" />
+          <ScalarProperty Name="Doanh_Thu" ColumnName="Doanh Thu" />
+          <ScalarProperty Name="date_use" ColumnName="date_use" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetRevenueNow" FunctionName="Management_FootballPitchModel.Store.GetRevenueNow" />
+    <FunctionImportMapping FunctionImportName="GetTimeSlotBookedIn7Day" FunctionName="Management_FootballPitchModel.Store.GetTimeSlotBookedIn7Day">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Management_FootballPitchModel.GetTimeSlotBookedIn7Day_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Số_Lượng_Đặt" ColumnName="Số Lượng Đặt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSumTimeBooked" FunctionName="Management_FootballPitchModel.Store.GetSumTimeBooked">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Management_FootballPitchModel.GetSumTimeBooked_Result">
+          <ScalarProperty Name="name_pitch" ColumnName="name_pitch" />
+          <ScalarProperty Name="Số_Phút_Đặt" ColumnName="Số Phút Đặt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTimeSlotBooked" FunctionName="Management_FootballPitchModel.Store.GetTimeSlotBooked">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Management_FootballPitchModel.GetTimeSlotBooked_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Số_Lượng_Đặt" ColumnName="Số Lượng Đặt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Cancel_Pitch">
+      <EntityTypeMapping TypeName="Management_FootballPitchModel.Cancel_Pitch">
+        <MappingFragment StoreEntitySet="Cancel_Pitch">
+          <ScalarProperty Name="date_cancel" ColumnName="date_cancel" />
+          <ScalarProperty Name="phone_orderer" ColumnName="phone_orderer" />
+          <ScalarProperty Name="orderer" ColumnName="orderer" />
+          <ScalarProperty Name="id_f_pitch" ColumnName="id_f_pitch" />
+          <ScalarProperty Name="id_time_slot" ColumnName="id_time_slot" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="time_end" ColumnName="time_end" />
+          <ScalarProperty Name="time_start" ColumnName="time_start" />
+          <ScalarProperty Name="date_use" ColumnName="date_use" />
+          <ScalarProperty Name="date_book" ColumnName="date_book" />
+          <ScalarProperty Name="id_cancel_p_book" ColumnName="id_cancel_p_book" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

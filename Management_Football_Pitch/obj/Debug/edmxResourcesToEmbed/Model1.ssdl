@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Management_FootballPitchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id_account" />
+    </Key>
+    <Property Name="id_account" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="20" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="20" />
+    <Property Name="date_crate" Type="datetime" />
+    <Property Name="permission" Type="nvarchar" MaxLength="15" />
+    <Property Name="state" Type="nvarchar" MaxLength="15" />
+    <Property Name="id_user_info" Type="nvarchar" MaxLength="15" />
+    <Property Name="money" Type="money" />
+  </EntityType>
+  <EntityType Name="Cancel_Pitch">
+    <Key>
+      <PropertyRef Name="id_cancel_p_book" />
+    </Key>
+    <Property Name="id_cancel_p_book" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="date_book" Type="datetime" />
+    <Property Name="date_use" Type="datetime" />
+    <Property Name="time_start" Type="time" Precision="7" />
+    <Property Name="time_end" Type="time" Precision="7" />
+    <Property Name="price" Type="money" />
+    <Property Name="id_time_slot" Type="int" />
+    <Property Name="id_f_pitch" Type="nvarchar" MaxLength="15" />
+    <Property Name="orderer" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone_orderer" Type="nchar" MaxLength="20" />
+    <Property Name="date_cancel" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Deposit_Invoice">
+    <Key>
+      <PropertyRef Name="id_deposit_voice" />
+    </Key>
+    <Property Name="id_deposit_voice" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="date_deposit" Type="datetime" />
+    <Property Name="deposit_amount" Type="money" />
+    <Property Name="id_account" Type="nvarchar" MaxLength="15" />
+    <Property Name="id_time_slot" Type="int" />
+    <Property Name="id_f_pitch" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Football_Pitch">
+    <Key>
+      <PropertyRef Name="id_f_pitch" />
+    </Key>
+    <Property Name="id_f_pitch" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="name_pitch" Type="nvarchar" MaxLength="20" />
+    <Property Name="image" Type="nvarchar" MaxLength="25" />
+    <Property Name="type_pitch" Type="nvarchar" MaxLength="20" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="price_1" Type="money" />
+    <Property Name="price_2" Type="money" />
+    <Property Name="price_3" Type="money" />
+    <Property Name="praren_pitch" Type="nvarchar" MaxLength="15" />
+    <Property Name="state" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="id_invoice" />
+    </Key>
+    <Property Name="id_invoice" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="amount" Type="money" />
+    <Property Name="invoice_date" Type="datetime" />
+    <Property Name="pay_day" Type="datetime" />
+    <Property Name="id_deposit_voice" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Pitch_Booked">
+    <Key>
+      <PropertyRef Name="id_p_book" />
+    </Key>
+    <Property Name="id_p_book" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="date_book" Type="datetime" />
+    <Property Name="date_use" Type="datetime" />
+    <Property Name="time_start" Type="time" Precision="7" />
+    <Property Name="time_end" Type="time" Precision="7" />
+    <Property Name="price" Type="money" />
+    <Property Name="id_time_slot" Type="int" />
+    <Property Name="id_f_pitch" Type="nvarchar" MaxLength="15" />
+    <Property Name="orderer" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone_orderer" Type="nchar" MaxLength="20" />
+    <Property Name="state" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Type_Time_Slot">
+    <Key>
+      <PropertyRef Name="id_time_slot" />
+    </Key>
+    <Property Name="id_time_slot" Type="int" Nullable="false" />
+    <Property Name="name_time_slot" Type="nvarchar" MaxLength="15" />
+    <Property Name="time_from" Type="time" Precision="7" />
+    <Property Name="time_to" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="User_Info">
+    <Key>
+      <PropertyRef Name="id_user_info" />
+    </Key>
+    <Property Name="id_user_info" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="30" />
+    <Property Name="date_of_birth" Type="datetime" />
+    <Property Name="sex" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK__Account__id_user__267ABA7A">
+    <End Role="User_Info" Type="Self.User_Info" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Info">
+        <PropertyRef Name="id_user_info" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="id_user_info" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Deposit_I__id_ac__32E0915F">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Deposit_Invoice" Type="Self.Deposit_Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="Deposit_Invoice">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Deposit_I__id_f___31EC6D26">
+    <End Role="Football_Pitch" Type="Self.Football_Pitch" Multiplicity="0..1" />
+    <End Role="Deposit_Invoice" Type="Self.Deposit_Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Football_Pitch">
+        <PropertyRef Name="id_f_pitch" />
+      </Principal>
+      <Dependent Role="Deposit_Invoice">
+        <PropertyRef Name="id_f_pitch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Deposit_I__id_ti__30F848ED">
+    <End Role="Type_Time_Slot" Type="Self.Type_Time_Slot" Multiplicity="0..1" />
+    <End Role="Deposit_Invoice" Type="Self.Deposit_Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Time_Slot">
+        <PropertyRef Name="id_time_slot" />
+      </Principal>
+      <Dependent Role="Deposit_Invoice">
+        <PropertyRef Name="id_time_slot" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__id_depo__35BCFE0A">
+    <End Role="Deposit_Invoice" Type="Self.Deposit_Invoice" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deposit_Invoice">
+        <PropertyRef Name="id_deposit_voice" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="id_deposit_voice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pitch_Boo__id_f___2E1BDC42">
+    <End Role="Football_Pitch" Type="Self.Football_Pitch" Multiplicity="0..1" />
+    <End Role="Pitch_Booked" Type="Self.Pitch_Booked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Football_Pitch">
+        <PropertyRef Name="id_f_pitch" />
+      </Principal>
+      <Dependent Role="Pitch_Booked">
+        <PropertyRef Name="id_f_pitch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pitch_Boo__id_ti__2D27B809">
+    <End Role="Type_Time_Slot" Type="Self.Type_Time_Slot" Multiplicity="0..1" />
+    <End Role="Pitch_Booked" Type="Self.Pitch_Booked" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Time_Slot">
+        <PropertyRef Name="id_time_slot" />
+      </Principal>
+      <Dependent Role="Pitch_Booked">
+        <PropertyRef Name="id_time_slot" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CheckEmptyFootballPitch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="time_start" Type="nvarchar" Mode="In" />
+    <Parameter Name="time_end" Type="nvarchar" Mode="In" />
+    <Parameter Name="date_use" Type="datetime" Mode="In" />
+    <Parameter Name="name_pitch" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="CheckEmptyPitch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="time_start" Type="nvarchar" Mode="In" />
+    <Parameter Name="time_end" Type="nvarchar" Mode="In" />
+    <Parameter Name="date_use" Type="datetime" Mode="In" />
+    <Parameter Name="name_pitch" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetRevenueByCurrentDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetRevenueNow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetSumTimeBooked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="startDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="endDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTimeSlotBooked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="startDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="endDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTimeSlotBookedIn7Day" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Management_FootballPitchModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cancel_Pitch" EntityType="Self.Cancel_Pitch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deposit_Invoice" EntityType="Self.Deposit_Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Football_Pitch" EntityType="Self.Football_Pitch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pitch_Booked" EntityType="Self.Pitch_Booked" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type_Time_Slot" EntityType="Self.Type_Time_Slot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Info" EntityType="Self.User_Info" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Account__id_user__267ABA7A" Association="Self.FK__Account__id_user__267ABA7A">
+      <End Role="User_Info" EntitySet="User_Info" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Deposit_I__id_ac__32E0915F" Association="Self.FK__Deposit_I__id_ac__32E0915F">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Deposit_Invoice" EntitySet="Deposit_Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Deposit_I__id_f___31EC6D26" Association="Self.FK__Deposit_I__id_f___31EC6D26">
+      <End Role="Football_Pitch" EntitySet="Football_Pitch" />
+      <End Role="Deposit_Invoice" EntitySet="Deposit_Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Deposit_I__id_ti__30F848ED" Association="Self.FK__Deposit_I__id_ti__30F848ED">
+      <End Role="Type_Time_Slot" EntitySet="Type_Time_Slot" />
+      <End Role="Deposit_Invoice" EntitySet="Deposit_Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__id_depo__35BCFE0A" Association="Self.FK__Invoice__id_depo__35BCFE0A">
+      <End Role="Deposit_Invoice" EntitySet="Deposit_Invoice" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pitch_Boo__id_f___2E1BDC42" Association="Self.FK__Pitch_Boo__id_f___2E1BDC42">
+      <End Role="Football_Pitch" EntitySet="Football_Pitch" />
+      <End Role="Pitch_Booked" EntitySet="Pitch_Booked" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pitch_Boo__id_ti__2D27B809" Association="Self.FK__Pitch_Boo__id_ti__2D27B809">
+      <End Role="Type_Time_Slot" EntitySet="Type_Time_Slot" />
+      <End Role="Pitch_Booked" EntitySet="Pitch_Booked" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
